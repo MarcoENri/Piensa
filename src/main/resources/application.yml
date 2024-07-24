@@ -1,0 +1,24 @@
+# Configuraci�n del servidor
+server:
+  port: 8081
+  error:
+    include-message: always
+
+# Configuraci�n de Spring
+spring:
+  # Configuraci�n de migraci�n de base de datos con Flyway
+  flyway:
+    enabled: true
+    baselineVersion: 1
+    locations:
+      classpath: db/migration
+    sqlMigrationSuffixes: .sql
+    baselineOnMigrate: true
+    sqlMigrationPrefix: V
+    schemas: public
+
+  datasource:
+    url: jdbc:postgresql://kala.db.elephantsql.com:5432/hhjqksui?socketTimeout=3
+    username: hhjqksui
+    password: LyC9-iGT4mzA0zn9SMJ_P9FcmApDhpAx
+    driverClassName: org.postgresql.Driver
