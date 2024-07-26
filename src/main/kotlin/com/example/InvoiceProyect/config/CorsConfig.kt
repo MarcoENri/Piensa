@@ -25,19 +25,4 @@ class CorsConfig {
         return source
     }
 
-    @Bean
-    fun corsFilter(): FilterRegistrationBean<CorsFilter> {
-        val source = UrlBasedCorsConfigurationSource()
-        val config = CorsConfiguration()
-        config.allowedOrigins = listOf("http://localhost:5173")
-        config.allowedMethods = listOf("HEAD", "GET", "POST", "PUT", "DELETE", "PATCH", "OPTIONS")
-        config.allowCredentials = true
-        config.allowedHeaders = listOf("*")
-        config.exposedHeaders = listOf("X-Auth-Token", "Authorization", "Access-Control-Allow-Origin", "Access-Control-Allow-Credentials")
-        source.registerCorsConfiguration("/**", config)
-
-        val bean = FilterRegistrationBean(CorsFilter(source))
-        bean.order = 0
-        return bean
-    }
 }

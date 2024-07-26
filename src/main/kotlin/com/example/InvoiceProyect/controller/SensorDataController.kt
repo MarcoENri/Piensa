@@ -22,7 +22,10 @@ class SensorDataController {
     fun save (@RequestBody sensorData: SensorData): SensorData {
         return sensorDataService.save(sensorData)
     }
-
+    @DeleteMapping("/{id}")
+    fun delete(@PathVariable id: Long) {
+        sensorDataService.delete(id)
+    }
     @PutMapping
     fun update(@RequestBody sensorData: SensorData): ResponseEntity<SensorData> {
         return ResponseEntity(sensorDataService.update(sensorData), HttpStatus.OK)

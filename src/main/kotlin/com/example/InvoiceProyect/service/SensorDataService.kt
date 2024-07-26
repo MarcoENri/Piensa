@@ -34,4 +34,23 @@ class SensorDataService {
     fun findById(id: Long?): SensorData? {
         return sensorDataRepository.findById(id)
     }
+    fun updateName(sensorData: SensorData): SensorData? {
+        try {
+            var response = sensorDataRepository.findById(sensorData.id)
+                ?: throw Exception("Ya existe el id")
+            response.apply {
+                id= sensorData.id
+            }
+            return sensorDataRepository.save (response)
+        } catch (ex: Exception) {
+            throw ResponseStatusException(HttpStatus.NOT_FOUND, ex.message)
+        }
+    }
+
+    fun delete(id: Long) {
+        if (!sensorDataRepository.existsById(id)) {
+            throw ResponseStatusException(HttpStatus.NOT_FOUND, "Film with id $id not found")
+        }
+        sensorDataRepository.deleteById(id)
+    }
 }
